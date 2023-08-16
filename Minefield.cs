@@ -20,5 +20,14 @@ public class Minefield
         _bombLocations[x, y] = true;
     }
 
+    internal bool IsBomb(int row, int col)
+    {
+        return _bombLocations[row, col];
+    }
+
+    internal bool IsUncovered(int row, int col)
+    {
+        return _uncoveredCell[row, col];
+    }
 
 }
