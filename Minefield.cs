@@ -14,4 +14,11 @@ public class Minefield
         Columns = cols;
     }
 
+
+    public void SetBomb(int x, int y)
+    {
+        _bombLocations[x, y] = true;
+    }
+
+
 }

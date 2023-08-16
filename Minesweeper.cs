@@ -8,11 +8,11 @@ public static class Minesweeper
         bool gameOver = false;
 
         //set the bombs...
-        //field.SetBomb(0, 0);
-        //field.SetBomb(0, 1);
-        //field.SetBomb(1, 1);
-        //field.SetBomb(1, 4);
-        //field.SetBomb(4, 2);s
+        field.SetBomb(0, 0);
+        field.SetBomb(0, 1);
+        field.SetBomb(1, 1);
+        field.SetBomb(1, 4);
+        field.SetBomb(4, 2);
 
         //the mine field should look like this now:
         //  01234
