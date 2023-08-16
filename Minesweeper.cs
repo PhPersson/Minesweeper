@@ -25,7 +25,7 @@ public static class Minesweeper
         // Game code...
 
         Console.WriteLine("Minefield:");
-
+        PrintBoard(field);
 
         do
         {
@@ -67,11 +67,27 @@ public static class Minesweeper
 
     private static void PrintBoard(Minefield minefield)
     {
+        Console.Write("  ");
+        for (int i = 0; i < minefield.Columns; i++)
+        {
+            Console.Write(i);
+        }
+        Console.WriteLine();
 
+
+        for (int i = minefield.Rows - 1; i >= 0; i--)
+        {
+            Console.Write(i + "|");
+            //For each row we need to iterate the columns
+            for (int j = 0; j < minefield.Columns; j++)
+            {
+
+                    Console.Write("?");
+
+            }
+            Console.WriteLine();
+        }
 
     }
 
-
 }
-
-
