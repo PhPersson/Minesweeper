@@ -81,6 +81,16 @@ public static class Minesweeper
             //For each row we need to iterate the columns
             for (int j = 0; j < minefield.Columns; j++)
             {
+                if(minefield.IsUncovered(j, i))
+                {
+                    if(minefield.IsBomb(j, i))
+                    {
+                        Console.Write("X");
+                    } else
+                    {
+                        // Count the number of neighboring bombs
+                    }
+                }
 
                     Console.Write("?");
 
