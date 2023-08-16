@@ -33,7 +33,20 @@ public static class Minesweeper
 
             if (usersInput?.Length == 2 && int.TryParse(usersInput[0], out int x) && int.TryParse(usersInput[1], out int y))
             {
-                
+                if (field.IsBomb(x, y))
+                {
+                    Console.WriteLine("You hit a bomb, game over");
+                    gameOver = true;
+                }
+                else if (!field.IsUncovered(x, y))
+                {
+                    /// Actuall logic
+                }
+                else
+                {
+                    Console.WriteLine("This cell is already uncovered.");
+                }
+
             }
             else
             {
@@ -51,6 +64,12 @@ public static class Minesweeper
         return input;
     }
 
+
+    private static void PrintBoard(Minefield minefield)
+    {
+
+
+    }
 
 
 }
