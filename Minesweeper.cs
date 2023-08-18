@@ -74,32 +74,34 @@ public static class Minesweeper
     }
 
 
-    private static void PrintBoard(Minefield minefield)
+    private static void PrintBoard(Minefield field)
     {
+
         Console.Write("  ");
-        for (int i = 0; i < minefield.Columns; i++)
+        for (int i = 0; i < field.Rows; i++)
         {
             Console.Write(i);
         }
         Console.WriteLine();
 
 
-        for (int i = minefield.Rows - 1; i >= 0; i--)
+
+        for (int i = field.Columns - 1; i >= 0; i--)
         {
             Console.Write(i + "|");
-            //For each row we need to iterate the columns
-            for (int j = 0; j < minefield.Columns; j++)
+
+            for (int j = 0; j < field.Columns; j++)
             {
-                if (minefield.IsUncovered(j, i))
+                if (field.IsUncovered(j, i))
                 {
-                    if (minefield.IsBomb(j, i))
+                    if (field.IsBomb(j, i))
                     {
                         Console.Write("X");
                     }
                     else
                     {
                         // Cell doesn't contain a bomb, display the count of neighboring bombs.
-                        int neighboringBombs = minefield.CountNeighborBombs(j, i);
+                        int neighboringBombs = field.CountNeighborBombs(j, i);
                         if (neighboringBombs != 0)
                         {
                             Console.Write(neighboringBombs);
@@ -108,9 +110,10 @@ public static class Minesweeper
                         Console.Write("");
                     }
                 }
-
-                Console.Write("?");
-
+                else
+                {
+                    Console.Write("?");
+                }
             }
             Console.WriteLine();
         }
