@@ -4,7 +4,6 @@ namespace Minesweeper;
 
 public class Minefield
 {
-
     public int Rows { get; }
     public int Columns { get; }
     private bool[,] _bombLocations = new bool[5, 5];
@@ -40,11 +39,54 @@ public class Minefield
 
     public void UncoverCell(int row, int col)
     {
+        if (!IsInsideGameGrid(row, col)) {
+            return;
+        }
+
         if (!_uncoveredCells[row, col])
         {
             _uncoveredCells[row, col] = true;
         }
+        if (CountNeighborBombs(row,col) == 0)
+        {
+            for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
+            {
+                for (int colOffset = -1; colOffset <= 1; colOffset++)
+                {
+                    UncoverCell(row + rowOffset, col + colOffset);
+                }
+            }
+        }
+
     }
 
+    public int CountNeighborBombs(int row, int col)
+    {
+        int bombCount = 0;
+
+        // Iterate through the neighboring cells around the target cell.
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
+        {
+            for (int colOffset = -1; colOffset <= 1; colOffset++)
+            {
+                // Calculate the coordinates of the neighboring cell.
+                int neighborRow = row + rowOffset;
+                int neighborColumn = col + colOffset;
+
+                // Check if the neighboring cell is within the grid boundaries.
+                if (IsInsideGameGrid(neighborRow, neighborColumn))
+                {
+                    // Check if the neighboring cell contains a bomb.
+                    if (_bombLocations[neighborRow, neighborColumn])
+                    {
+                        bombCount++;
+                    }
+                }
+            }
+        }
+
+        // Return the count of neighboring cells containing bombs.
+        return bombCount;
+    }
 
 }

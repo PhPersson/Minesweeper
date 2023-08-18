@@ -31,16 +31,18 @@ public static class Minesweeper
         {
             var usersInput = GetUserInput();
 
-            if (usersInput?.Length == 2 && int.TryParse(usersInput[0], out int x) && int.TryParse(usersInput[1], out int y))
+            if (usersInput?.Length == 2 && int.TryParse(usersInput[0], out int row) && int.TryParse(usersInput[1], out int col))
             {
-                if (field.IsBomb(x, y))
+                if (field.IsBomb(row, col))
                 {
+                    PrintBoard(field);
                     Console.WriteLine("You hit a bomb, game over");
                     gameOver = true;
                 }
-                else if (!field.IsUncovered(x, y))
+                else if (!field.IsUncovered(row, col))
                 {
-                    /// Actuall logic
+                    field.UncoverCell(row, col);
+                    PrintBoard(field);
                 }
                 else
                 {
