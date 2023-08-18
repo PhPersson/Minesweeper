@@ -33,22 +33,29 @@ public static class Minesweeper
 
             if (usersInput?.Length == 2 && int.TryParse(usersInput[0], out int row) && int.TryParse(usersInput[1], out int col))
             {
-                if (field.IsBomb(row, col))
+                if (field.IsInsideGameGrid(row, col))
+
                 {
-                    PrintBoard(field);
-                    Console.WriteLine("You hit a bomb, game over");
-                    gameOver = true;
-                }
-                else if (!field.IsUncovered(row, col))
-                {
-                    field.UncoverCell(row, col);
-                    PrintBoard(field);
+                    if (field.IsBomb(row, col))
+                    {
+                        PrintBoard(field);
+                        Console.WriteLine("You hit a bomb, game over");
+                        gameOver = true;
+                    }
+                    else if (!field.IsUncovered(row, col))
+                    {
+                        field.UncoverCell(row, col);
+                        PrintBoard(field);
+                    }
+                    else
+                    {
+                        Console.WriteLine("This cell is already uncovered.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("This cell is already uncovered.");
+                    Console.WriteLine("Invalid row or column.");
                 }
-
             }
             else
             {
@@ -83,12 +90,13 @@ public static class Minesweeper
             //For each row we need to iterate the columns
             for (int j = 0; j < minefield.Columns; j++)
             {
-                if(minefield.IsUncovered(j, i))
+                if (minefield.IsUncovered(j, i))
                 {
-                    if(minefield.IsBomb(j, i))
+                    if (minefield.IsBomb(j, i))
                     {
                         Console.Write("X");
-                    } else
+                    }
+                    else
                     {
                         // Cell doesn't contain a bomb, display the count of neighboring bombs.
                         int neighboringBombs = minefield.CountNeighborBombs(j, i);
@@ -101,7 +109,7 @@ public static class Minesweeper
                     }
                 }
 
-                    Console.Write("?");
+                Console.Write("?");
 
             }
             Console.WriteLine();

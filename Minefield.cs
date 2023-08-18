@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Minesweeper;
+﻿namespace Minesweeper;
 
 public class Minefield
 {
@@ -39,21 +37,24 @@ public class Minefield
 
     public void UncoverCell(int row, int col)
     {
-        if (!IsInsideGameGrid(row, col)) {
+
+        if (!IsInsideGameGrid(row, col))
+        {
             return;
         }
 
         if (!_uncoveredCells[row, col])
         {
             _uncoveredCells[row, col] = true;
-        }
-        if (CountNeighborBombs(row,col) == 0)
-        {
-            for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
+
+            if (CountNeighborBombs(row, col) == 0)
             {
-                for (int colOffset = -1; colOffset <= 1; colOffset++)
+                for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
                 {
-                    UncoverCell(row + rowOffset, col + colOffset);
+                    for (int colOffset = -1; colOffset <= 1; colOffset++)
+                    {
+                        UncoverCell(row + rowOffset, col + colOffset);
+                    }
                 }
             }
         }
