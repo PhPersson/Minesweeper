@@ -90,7 +90,14 @@ public static class Minesweeper
                         Console.Write("X");
                     } else
                     {
-                        // Count the number of neighboring bombs
+                        // Cell doesn't contain a bomb, display the count of neighboring bombs.
+                        int neighboringBombs = minefield.CountNeighborBombs(j, i);
+                        if (neighboringBombs != 0)
+                        {
+                            Console.Write(neighboringBombs);
+                        }
+                        // If there are no neighboring bombs, display the cell as empty.
+                        Console.Write("");
                     }
                 }
 
