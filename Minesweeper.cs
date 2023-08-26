@@ -106,8 +106,6 @@ public static class Minesweeper
                         {
                             Console.Write(neighboringBombs);
                         }
-                        // If there are no neighboring bombs, display the cell as empty.
-                        Console.Write("");
                     }
                 }
                 else
